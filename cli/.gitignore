@@ -1,0 +1,6 @@
+/target
+/config.toml
+/secret.key
+Cargo.lock
+# Runtime output: the receiver creates this on its first successful push.
+/downloads

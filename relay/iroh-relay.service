@@ -1,0 +1,22 @@
+[Unit]
+Description=iroh relay server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=iroh
+Group=iroh
+Environment=RUST_LOG=info
+ExecStart=/usr/local/bin/iroh-relay --config-path /etc/iroh-relay/config.toml
+Restart=on-failure
+RestartSec=5
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+WorkingDirectory=/var/lib/iroh-relay
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/iroh-relay
+
+[Install]
+WantedBy=multi-user.target

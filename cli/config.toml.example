@@ -1,0 +1,9 @@
+# The UDP port the receiver binds.
+# `0` asks for a free port (ticket changes on every start).
+bind_port = 11842
+
+[[relay]]
+url = "https://<VPC DNS host>"
+auth_token = "REPLACE_WITH_YOUR_TOKEN"
+# QUIC address discovery port
+# quic = { port = 7842 }

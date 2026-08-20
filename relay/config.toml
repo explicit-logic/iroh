@@ -1,0 +1,27 @@
+# Plain-HTTP listener (captive-portal endpoint; most services move to HTTPS)
+http_bind_addr = "[::]:80"
+
+# Who may relay through this server.
+#
+# `shared_token` admits only clients presenting one of these tokens as
+# `Authorization: Bearer <token>` on the WebSocket upgrade. List several to
+# rotate or revoke per client. The list must not be empty and no token may be
+# an empty string, or the server refuses to start.
+#
+# Prefer keeping the real token out of this file: setting the
+# IROH_RELAY_ACCESS_TOKEN environment variable replaces this entire list with
+# that single value. See iroh-relay.service.
+#
+# Use `access = "everyone"` to go back to an open relay.
+access.shared_token = ["REPLACE_WITH_YOUR_TOKEN"]
+
+enable_quic_addr_discovery = true
+
+[tls]
+cert_mode      = "LetsEncrypt"
+hostname       = "your-dns-host"
+contact        = "you@example.com"
+cert_dir       = "/var/lib/iroh-relay/certs"
+prod_tls       = true
+https_bind_addr = "[::]:443"
+quic_bind_addr = "[::]:7842"
